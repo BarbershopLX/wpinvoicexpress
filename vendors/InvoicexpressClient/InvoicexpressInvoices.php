@@ -1,11 +1,18 @@
 <?php
 
-require_once 'InvoicexpressClient.php';
+require_once 'InvoicexpressAPIClient.php';
 require_once 'FilterInterface.php';
 
-class InvoicexpressInvoices extends InvoicexpressClient implements Filter {
+class InvoicexpressInvoices extends InvoicexpressAPIClient implements Filter {
 
 	protected $items = [];
+
+
+	public function chart() {
+
+		return $this->fetch('api/charts/invoicing');
+
+	}
 
 
 	public function all($page = null) {

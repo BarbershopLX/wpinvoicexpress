@@ -1,6 +1,6 @@
 <?php
 
-class InvoicexpressClient {
+class InvoicexpressAPIClient {
 
 	protected $settings = [];
 
@@ -27,7 +27,9 @@ class InvoicexpressClient {
 
 	public function fetch($object, $params = []) {
 
-		return simpleXML_load_file($this->buildURL($object, $params));
+		$url = $this->buildURL($object, $params);
+		// RCDebug($url);
+		return simpleXML_load_file($url);
 
 	}
 

@@ -2,27 +2,68 @@
 
 class RCDashboard implements Extension {
 
+
 	public static function enable() {
 
 		add_action('wp_dashboard_setup', function() {
 
-			wp_add_dashboard_widget('rc_ix_dashboard_widget', 'Invoicexpress', [ __CLASS__, 'renderDashboardWidget' ]);
+			wp_add_dashboard_widget('rc_ix_dashboard_widget_pending_payments', 'Invoicexpress Pending Payments', [ __CLASS__, 'renderDashboardWidgetPendingPayments' ]);
+
+			wp_add_dashboard_widget('rc_ix_dashboard_widget_chart', 'Invoicexpress Chart', [ __CLASS__, 'renderDashboardWidgetChart' ]);
 
 		});
 
 	}
 
-	public function renderDashboardWidget() {
+	public function renderDashboardWidgetChart() {
 
 		RCCore::includeVendor('InvoicexpressClient/InvoicexpressInvoices');
 
 		$options = get_option( 'wpie_settings' );
 
-		$Invoices = new InvoicexpressInvoices($options['domain'], $options['api_key']);
+		if (!empty($options)) {
 
-		$pending = $Invoices->all()->filter('status', 'final');
+			$Invoices = new InvoicexpressInvoices($options['domain'], $options['api_key']);
 
-		RCCore::render('widget_dashboard', [ 'invoices_pending' => $pending ]);
+			$data = $Invoices->chart();
+
+			$labels = (array) $data->series->value;
+			$values = (array) $data->graphs->graph->value;
+
+			array_shift($labels);
+			array_shift($values);
+
+			RCCore::render('widget_dashboard_chart', [ 'labels' => $labels, 'data' => $values ]);
+
+		} else {
+
+			RCCore::render('el_config_missing');
+			RCCore::render('el_affiliate');
+
+		}
+
+	}
+
+	public function renderDashboardWidgetPendingPayments() {
+
+		RCCore::includeVendor('InvoicexpressClient/InvoicexpressInvoices');
+
+		$options = get_option( 'wpie_settings' );
+
+		if (!empty($options)) {
+
+			$Invoices = new InvoicexpressInvoices($options['domain'], $options['api_key']);
+
+			$pending = $Invoices->all()->filter('status', 'final');
+
+			RCCore::render('widget_dashboard_pending', [ 'invoices_pending' => $pending ]);
+
+		} else {
+
+			RCCore::render('el_config_missing');
+			RCCore::render('el_affiliate');
+
+		}
 
 	}
 

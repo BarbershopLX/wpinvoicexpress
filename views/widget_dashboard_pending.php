@@ -1,5 +1,3 @@
-<h4>Payment Pending</h4>
-
 <table class="widefat fixed">
 	<thead>
 		<tr>

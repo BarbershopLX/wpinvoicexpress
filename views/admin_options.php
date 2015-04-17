@@ -21,6 +21,8 @@
 
 	</form>
 
+	<?php RCCore::render('el_affiliate'); ?>
+
 	<p align="right">Created by <a href="http://barbershop.pt">Barbershop</a>.</p>
 
 </div>

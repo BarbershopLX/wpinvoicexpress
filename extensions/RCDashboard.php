@@ -7,7 +7,7 @@ class RCDashboard implements Extension {
 
 		add_action('wp_dashboard_setup', function() {
 
-			wp_add_dashboard_widget('rc_ix_dashboard_widget_pending_payments', 'Invoicexpress Pending Payments', [ __CLASS__, 'renderDashboardWidgetPendingPayments' ]);
+			wp_add_dashboard_widget('rc_ix_dashboard_widget_pending_payments', 'Invoicexpress Pending', [ __CLASS__, 'renderDashboardWidgetPendingPayments' ]);
 
 			wp_add_dashboard_widget('rc_ix_dashboard_widget_chart', 'Invoicexpress Chart', [ __CLASS__, 'renderDashboardWidgetChart' ]);
 
@@ -55,8 +55,9 @@ class RCDashboard implements Extension {
 			$Invoices = new InvoicexpressInvoices($options['domain'], $options['api_key']);
 
 			$pending = $Invoices->all()->filter('status', 'final');
+			$drafts = $Invoices->filter('status', 'draft');
 
-			RCCore::render('widget_dashboard_pending', [ 'invoices_pending' => $pending ]);
+			RCCore::render('widget_dashboard_invoices', [ 'pending' => $pending, 'drafts' => $drafts ]);
 
 		} else {
 

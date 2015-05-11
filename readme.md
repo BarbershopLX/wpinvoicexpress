@@ -11,8 +11,14 @@ Add finantial information to your Wordpress Dashboard from Invoicexpress.
 
 ## Requirements
 
-PHP 5.4
-[Invoicexpress account](https://www.app.invoicexpress.com/accounts/new?affiliate_token=ruicruz_amqa9&language=pt)
+* PHP 5.4
+* [Invoicexpress account](https://www.app.invoicexpress.com/accounts/new?affiliate_token=ruicruz_amqa9&language=pt)
+
+## Roadmap
+
+* Namespacing
+* Data loading using ajax for quicker dashboard loading times
+
 
 ## Support
 

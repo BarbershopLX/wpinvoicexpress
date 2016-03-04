@@ -28,8 +28,10 @@ class InvoicexpressAPIClient {
 	public function fetch($object, $params = []) {
 
 		$url = $this->buildURL($object, $params);
-		// RCDebug($url);
-		return simpleXML_load_file($url);
+
+		$qp = qp( $url );
+
+		return $qp;
 
 	}
 

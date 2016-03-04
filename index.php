@@ -9,3 +9,5 @@
  */
 
 require_once 'RCCore.php';
+
+require_once 'vendor/autoload.php';

@@ -27,6 +27,8 @@ Add finantial information to your Wordpress Dashboard from Invoicexpress.
 
 ## Changelog 
 
+[ ![Codeship Status for BarbershopLX/wpinvoicexpress](https://codeship.com/projects/d3f59f50-e67a-0133-cef2-06b21bf3bd66/status?branch=master)](https://codeship.com/projects/146762)
+
 1.0.2
 
 * New dashboard panel (Overview)

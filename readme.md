@@ -27,6 +27,11 @@ Add finantial information to your Wordpress Dashboard from Invoicexpress.
 
 ## Changelog 
 
+1.0.2
+
+* New dashboard panel (Overview)
+* Removes external runtime dependencies
+
 1.0 
 
 * Chart script is now local

@@ -4,7 +4,7 @@ Contributors: hellfish
 
 Tags: Invoices, Billing
 
-Tested up to: 4.2
+Tested up to: 4.5
 
 Stable tag: 1.0.2
 
